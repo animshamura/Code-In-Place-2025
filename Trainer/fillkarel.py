@@ -1,46 +1,39 @@
 from karel.stanfordkarel import *
 
-def put():
-    move()
-    put_beeper()
-
-def turns():
+def back():
     turn_left()
     turn_left()
+    while front_is_clear(): 
+         move()
 
-def moves():
-    move()
-    move()
-    move()
-    move()
+def fnp():
+    while front_is_clear(): 
+         move()
+         put_beeper()
 
-def fill():
-    put_beeper()
-    put()
-    put()
-    put()
-    put()
-
-def backnup():
-    turns()
-    moves()
-    turns()
+def straight():
     turn_left()
-    move()
-    turns()
     turn_left()
-  
-def fnb():
-    fill()
-    backnup()
-  
+    turn_left()
+
+def left():
+    straight()
+    if front_is_clear():
+         move()
+         put_beeper()
+         straight()
+         fnp()
+         back()
+         left()
+    else: 
+         turn_left()
+         back()
+
 def main():
-   
-    fnb()
-    fnb()
-    fnb()
-    fnb()
-    fill()
-
+   put_beeper()
+   fnp()
+   back()
+   left()
+        
 if __name__ == '__main__':
     main()
